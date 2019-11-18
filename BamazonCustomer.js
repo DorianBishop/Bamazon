@@ -41,7 +41,13 @@ var displayItems = function() {
         }
         
         console.log(`\n\n${listTable.toString()}\n\n`);
-        // ask user to enter ID of item they wish to purchase
+        // ask user to enter id of item they wish to purchase.
         askForID();
     });
 };
+// function to prompt user to enter id of the product to purchase.
+var askForID = function() {
+    inquirer.prompt({
+        name: 'itemID',
+        type: 'input',
+        message: 'Enter the id of the item you would like to purchase:'
