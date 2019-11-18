@@ -45,9 +45,19 @@ var displayItems = function() {
         askForID();
     });
 };
-// function to prompt user to enter id of the product to purchase.
+
+// function to prompt user to enter id of the product to purchase
 var askForID = function() {
     inquirer.prompt({
-        name: 'itemID',
+        name: 'item_id',
         type: 'input',
-        message: 'Enter the id of the item you would like to purchase:'
+        message: 'Enter the ID of the item you would like to purchase:',
+        // validate input is number from 1-8
+        validate: (value) => {
+            if (!isNaN(value) && (value > 0 && value <= 8)) {
+                return true;
+            } else {
+                console.log(' => Please enter a number from 1-8');
+                return false;
+            }
+        }
