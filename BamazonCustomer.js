@@ -17,3 +17,12 @@ connection.connect((err) => {   if (err) throw err;
     // Will display all items from  the database , when mysql has been established. 
     displayItems();
 });
+
+// Global Variables.
+var chosenItem = {};
+
+// Function to reset the chosenItem array.
+
+var resetCart = function() {
+    chosenItem = {};
+}
