@@ -51,7 +51,7 @@ var askForID = function() {
     inquirer.prompt({
         name: 'item_id',
         type: 'input',
-        message: 'Enter the ID of the item you would like to purchase:',
+        message: 'Enter the id of the item you would like to purchase:',
         // validate input is number from 1-8
         validate: (value) => {
             if (!isNaN(value) && (value > 0 && value <= 8)) {
@@ -61,3 +61,11 @@ var askForID = function() {
                 return false;
             }
         }
+        // select all rows where ID = user's input
+    }).then((answer) => {
+        connection.query('SELECT item_id, product_name, price, stock_quantity, product_sales FROM products WHERE ?', { item_id: answer.itemID }, (err, res) => {
+            // confirm with user that this is the product they'd like to purchase
+            confirmItem(res[0].product_name, res);
+        });
+    });
+};
